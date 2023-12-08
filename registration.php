@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Login Form</title>
+    <title>Student Registration Form</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -45,29 +45,37 @@
     </style>
   </head>
   <body>
-    <form method="post">
-      <h2>Student Login Form</h2>
+    <form method="post" action= "../CONTROLLERS/store.php">
+      <h2>Student Registration Form</h2>
+
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" required />
 
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required />
 
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required />
-     
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="course">Course of Interest:</label>
+      <input type="text" id="course" name="course" required />
+
+      <label for="comments">Comments:</label>
+      <textarea id="comments" name="comments" rows="4"></textarea>
+
+      <input type ="hidden" name = "url" value = "register">
       <input type="submit" value="Submit" name="submit"/>
     </form>
   </body>
 </html>
 
-
-<?php
-include("./CONTROLLERS/check_user.php");
-include("./config.php");
-include("./database.php");
-   if(isset($_POST['submit'])){
-      $email = $_POST['email'];
-      $password = $_POST['password'];
-      $check = new Check_user();
-      $check->Login_User_Exists($config,$email,$password);
-    }
-?>
